@@ -1,0 +1,31 @@
+{
+  "name": "multiplayerappelsin",
+  "version": "0.0.1",
+  "description": "Multiplayer Game",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marcus4420/MultiplayerAppelsin.git"
+  },
+  "keywords": [
+    "Game",
+    "Multiplayer"
+  ],
+  "author": "Marcus Ellested, Patrick Pedersen, Adam Golan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marcus4420/MultiplayerAppelsin/issues"
+  },
+  "homepage": "https://github.com/Marcus4420/MultiplayerAppelsin#readme"
+}
