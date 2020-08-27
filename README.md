@@ -30,6 +30,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-### Credits to contributers
+### Credits
 1. Patrick Pedersen
 2. Adam Golan
