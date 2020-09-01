@@ -7,7 +7,15 @@ var walls = {
     color: 200,
     width: 10
 }
-const gravity = 0.5;
+const gravity = 0.1;
+
+Array.prototype.removeItem = function(item) {
+    let index = this.indexOf(item);
+    if (index > -1) {
+        this.splice(index, 1);
+    }
+}
+
 new Wall({
     color: walls.color,
     width: walls.width,
@@ -64,9 +72,9 @@ function draw() {
 setInterval(function() {
     new Ball({
         x: random(canvasInfo.width / 3, (canvasInfo.width / 3) * 2),
-        y: 50
+        y: -50
     })
-}, 1000);
+}, 5000);
 
 function displayInstances(x) {
     if (Array.isArray(x)) {
