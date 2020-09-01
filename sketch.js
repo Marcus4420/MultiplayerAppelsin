@@ -98,3 +98,6 @@ function displayInstances(x) {
         x.instances.forEach(inst => inst.display());
     }
 }
+function toRadians (angle) {
+    return angle * (Math.PI / 180);
+}
