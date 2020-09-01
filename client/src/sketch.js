@@ -31,7 +31,8 @@ new Ground({
     y: canvasInfo.height
 });
 function setup() {
-    createCanvas(canvasInfo.width, canvasInfo.height);
+    let myCanvas = createCanvas(canvasInfo.width, canvasInfo.height);
+    myCanvas.parent("containerCanvas");
 }
 function draw() {
     background(0);

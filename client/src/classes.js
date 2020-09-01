@@ -1,9 +1,3 @@
-class Ball {
-    constructor(info) {
-        
-    }
-
-}
 class Ground {
     static instances = [];
     constructor(info) {
