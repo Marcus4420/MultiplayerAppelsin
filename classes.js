@@ -56,6 +56,14 @@ class Ball {
         if (this.y > canvasInfo.height + this.rad) {
             Ball.instances.removeItem(this);
         }
+        if (this.x < walls.width) {
+            Ball.instances.removeItem(this);
+            score2 += 1;
+        }
+        if (this.x > canvasInfo.width - walls.width) {
+            Ball.instances.removeItem(this);
+            score1 += 1;
+        }
     }
 }
 

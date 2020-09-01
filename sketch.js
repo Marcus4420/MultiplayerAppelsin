@@ -1,3 +1,6 @@
+let score1 = 0;
+let score2 = 0;
+
 var canvasInfo = {
     height: 500,
     width: 800,
@@ -62,11 +65,21 @@ new Player({
     }
 });
 function setup() {
+    /*let myCanvas = createCanvas(canvasInfo.width, canvasInfo.height);
+    myCanvas.parent("containerCanvas");*/
+
     createCanvas(canvasInfo.width, canvasInfo.height);
 }
 function draw() {
     background(0);
     displayInstances([Wall, Ball, Ground, Player]);
+
+    fill(255);
+    text("Spiller 1:", 20, 20);
+    text("Score: "+score1, 20, 40);
+
+    text("Spiller 2:", canvasInfo.width - 80, 20);
+    text("Score: "+score2, canvasInfo.width - 80, 40);
 }
 
 setInterval(function() {
