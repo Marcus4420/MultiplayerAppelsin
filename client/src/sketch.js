@@ -7,6 +7,7 @@ var walls = {
     color: 200,
     width: 10
 }
+const gravity = 0.5;
 new Wall({
     color: walls.color,
     width: walls.width,
@@ -28,14 +29,31 @@ new Wall({
 new Ground({
     color: [0,255,0],
     height: 10,
-    y: canvasInfo.height
+    y: canvasInfo.height-10
+});
+new Player({
+    x: 100,
+    y: canvasInfo.height - 100,
+    name: '1',
+    controls: {
+        up: 87,
+        left: 65,
+        right: 68,
+        down: 83
+    }
+});
+new Player({
+    x: canvasInfo.width - 100,
+    y: canvasInfo.height - 100,
+    name: '2',
+    controls: {
+        up: 38,
+        left: 37,
+        right: 39,
+        down: 40
+    }
 });
 function setup() {
     let myCanvas = createCanvas(canvasInfo.width, canvasInfo.height);
     myCanvas.parent("containerCanvas");
-}
-function draw() {
-    background(0);
-    Wall.instances.forEach(inst => inst.display());
-    Ground.instances.forEach(inst => inst.display());
 }
