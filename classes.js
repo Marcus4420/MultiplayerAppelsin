@@ -42,7 +42,7 @@ class Ball {
         this.dia = this.rad * 2;
         this.x = info.x;
         this.y = info.y;
-        this.yspeed = 0.1;
+        this.yspeed = 5;
     }
     display() {
         fill(this.color);
@@ -52,10 +52,18 @@ class Ball {
     }
     move() {
         this.y += this.yspeed;
-        this.yspeed += gravity;
         if (this.y > canvasInfo.height + this.rad) {
             Ball.instances.removeItem(this);
         }
+    }
+}
+class ThrowBall extends Ball {
+    constructor(info) {
+        super(info);
+
+    }
+    move() {
+
     }
 }
 
@@ -73,6 +81,8 @@ class Player {
         this.ifJump = false;
         this.controls = info.controls;
         this.caughtBalls = 0;
+        this.ballAngle = 180;
+        this.ballHeld = false;
     }
     display() {
         fill(255);
@@ -89,20 +99,40 @@ class Player {
         this.move();
     }
     move() {
-        if (this.ifJump) {
-            this.jump();
-        }
-        else if (keyIsDown(this.controls.up)) {
-            this.initiateJump();
-        }
+        
         if (keyIsDown(this.controls.down)) {
-            this.throwBall();
-        }
-        if (keyIsDown(this.controls.left)) {
-            this.x -= 8;
-        }
-        if (keyIsDown(this.controls.right)) {
-            this.x += 8;
+            if (!this.ballHeld) {
+                this.ballAngle = 90;
+            }
+            this.ballHeld = true;
+            this.holdBall();
+            if (keyIsDown(this.controls.left)) {
+                this.ballAngle += 5;
+                if (this.ballAngle > 190) {
+                    this.ballAngle = 190;
+                }
+            }
+            if (keyIsDown(this.controls.right)) {
+                this.ballAngle -= 5;
+                if (this.ballAngle < -10) {
+                    this.ballAngle = -10;
+                }
+            }
+        } else {
+            this.ballHeld = false;
+            if (this.ifJump) {
+                this.jump();
+            }
+            else if (keyIsDown(this.controls.up)) {
+                this.initiateJump();
+            }
+            if (keyIsDown(this.controls.left)) {
+                this.x -= 8;
+            }
+            if (keyIsDown(this.controls.right)) {
+                this.x += 8;
+            }
+
         }
         if (this.x < 20) {
             this.x = 20;
@@ -128,9 +158,10 @@ class Player {
     ballContact() {
         for (var ball of Ball.instances) {
             if (ball.rad + this.rad >= dist(this.x, this.y, ball.x, ball.y)) {
-                Ball.instances.removeItem(ball);
+                
                 if (this.caughtBalls < 3) {
                     this.caughtBalls += 1;
+                    Ball.instances.removeItem(ball);
                 } else {
 
                 }
@@ -142,12 +173,12 @@ class Player {
         var y = this.y + ((this.rad + 5) * (index + 1));
         ellipse(this.x, y, 6, 6);
     }
-    throwBall() {
+    holdBall() {
         if (this.caughtBalls > 0) {
-            new Ball({
-                x: this.x,
-                y: this.y - 40
-            });
+            fill([255, 124, 0]);
+            var x = this.x + (Math.cos(toRadians(this.ballAngle)) * 30);
+            var y = this.y - (Math.sin(toRadians(this.ballAngle)) * 30);
+            ellipse(x, y, 20, 20);
         }
     }
 }
