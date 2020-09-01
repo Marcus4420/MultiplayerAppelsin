@@ -7,6 +7,7 @@ var walls = {
     color: 200,
     width: 10
 }
+const gravity = 0.5;
 new Wall({
     color: walls.color,
     width: walls.width,
@@ -28,13 +29,51 @@ new Wall({
 new Ground({
     color: [0,255,0],
     height: 10,
-    y: canvasInfo.height
+    y: canvasInfo.height-10
+});
+new Player({
+    x: 100,
+    y: canvasInfo.height - 100,
+    name: '1',
+    controls: {
+        up: 87,
+        left: 65,
+        right: 68,
+        down: 83
+    }
+});
+new Player({
+    x: canvasInfo.width - 100,
+    y: canvasInfo.height - 100,
+    name: '2',
+    controls: {
+        up: 38,
+        left: 37,
+        right: 39,
+        down: 40
+    }
 });
 function setup() {
     createCanvas(canvasInfo.width, canvasInfo.height);
 }
 function draw() {
     background(0);
-    Wall.instances.forEach(inst => inst.display());
-    Ground.instances.forEach(inst => inst.display());
+    displayInstances([Wall, Ball, Ground, Player]);
+}
+
+setInterval(function() {
+    new Ball({
+        x: random(canvasInfo.width / 3, (canvasInfo.width / 3) * 2),
+        y: 50
+    })
+}, 1000);
+
+function displayInstances(x) {
+    if (Array.isArray(x)) {
+        for (var clss of x) {
+            clss.instances.forEach(inst => inst.display());
+        }
+    } else {
+        x.instances.forEach(inst => inst.display());
+    }
 }
