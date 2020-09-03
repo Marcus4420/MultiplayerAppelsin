@@ -163,6 +163,7 @@ class Player {
             this.ifJump = false;
         }
     }
+
     ballContact() {
         for (var ball of Ball.instances) {
             if (ball.rad + this.rad >= dist(this.x, this.y, ball.x, ball.y)) {
