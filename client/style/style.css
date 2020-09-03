@@ -1,0 +1,325 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #cccccc;
+}
+
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container-fluid:before {
+    display: table;
+    content: " ";
+}
+
+.container-fluid:after {
+    display: table;
+    content: " ";
+}
+
+.header {
+    width: 100%;
+    min-height: 50px;
+    margin-bottom: 8px;
+}
+
+.header h2 {
+    font-size: 20px;
+    /*background: rgba(0, 0, 0, 0.1);*/
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.containerGame {
+    display: flex;
+    justify-content: center;
+}
+
+#div-game {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+#containerBoard {
+    width: 800px;
+    min-width: 800px;
+    position: relative;
+    margin: 0;
+    line-height: 0;
+    content: '';
+}
+
+#containerCanvas {
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+    margin: auto;
+    width: 800px;
+}
+
+#overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    line-height: 1;
+    opacity: 0;
+    background: rgba(3,8,29,.8);
+    text-shadow: 0 0 3px #000;
+}
+
+#overlay .content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#button-wrapper {
+    position: absolute;
+}
+
+#button-wrapper button {
+    height: 25px;
+}
+
+.online-user-wrapper {
+    flex-basis: 20%;
+    border: black 3px solid;
+    margin-right: 10px;
+}
+
+/* Chat wrapper */
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+}
+
+input {
+    line-height: normal;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+#boxChat, #containerChat {
+    background: #eee;
+    width: 100%;
+}
+
+#containerSidebar {
+    position: relative;
+    margin-left: 8px;
+    width: 340px;
+    min-width: 340px;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}
+
+#containerChat {
+    height: 64px;
+    padding: 4px;
+    flex: 1 0 auto;
+    border-radius: 2px
+}
+
+#boxChat {
+    box-sizing: border-box;
+    height: 100%
+}
+
+#boxChatInput {
+    height: 34px
+}
+
+#boxMessages {
+    height: calc(100% - 52px);
+    overflow-y: auto
+}
+
+#boxMessages p {
+    padding: 3px;
+    margin: 0;
+    word-wrap: break-word
+}
+
+#boxMessages p:nth-child(even) {
+    background: #fafafa
+}
+
+#feedback {
+    height: 18px;
+}
+
+#feedback p {
+    padding: 0;
+    margin: 0;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+/*messages style*/
+.chat-text{
+    margin: 3px;
+}
+
+.user-nickname{
+    font-weight: bold!important;
+}
+
+/*online users*/
+#containerPlayerlist {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 8px;
+}
+
+#containerGamePlayers {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    width: 200px
+}
+
+#containerGamePlayers .player {
+    position: relative;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+    align-items: center;
+}
+
+#containerGamePlayers .player .info {
+    flex: 1 1 auto;
+    max-width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1;
+    color: #000;
+    text-align: center
+
+}
+
+#containerGamePlayers .player .score {
+    flex: 1 1 auto;
+    font-size: 14px
+}
+
+#containerGamePlayers .player .name {
+    flex: 1 1 auto;
+    font-size: 13px;
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+#containerGamePlayers .player:nth-child(even) {
+    background: #fafafa
+}
+
+#containerGamePlayers .player:nth-child(odd) {
+    background: #eee;
+}
+
+#containerGamePlayers .player:last-child {
+    border-radius: 0 0 2px 2px
+}
+
+#containerGamePlayers .player:only-child {
+    border-radius: 2px
+}
+
+.avatar {
+    user-select: none;
+    position: relative;
+    flex: 0 0 auto;
+    height: 48px;
+    width: 48px;
+}
+
+/* Modal */
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.5);
+}
+
+/* Modal Content/Box */
+.modal-content {
+    max-width: 500px;
+    min-height: 150px;
+    background-color: white;
+    opacity: 2;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.modal-title{
+    margin: 15px 0px;
+    padding: 5px;
+}
+
+#nickname-input {
+    position: relative;
+    width: 180px;
+    height: 28px;
+    border-radius: 4px;
+    border-style: solid;
+    border-color: #A2A2A2;
+}
